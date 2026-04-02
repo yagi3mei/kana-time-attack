@@ -1,3 +1,4 @@
+// ひらがな清音の配列
 const SEION = [
     { kana_char: "あ", romaji: "a" }, { kana_char: "い", romaji: "i" }, { kana_char: "う", romaji: "u" }, { kana_char: "え", romaji: "e" }, { kana_char: "お", romaji: "o" },
     { kana_char: "か", romaji: "ka" }, { kana_char: "き", romaji: "ki" }, { kana_char: "く", romaji: "ku" }, { kana_char: "け", romaji: "ke" }, { kana_char: "こ", romaji: "ko" },
@@ -10,6 +11,7 @@ const SEION = [
     { kana_char: "ら", romaji: "ra" }, { kana_char: "り", romaji: "ri" }, { kana_char: "る", romaji: "ru" }, { kana_char: "れ", romaji: "re" }, { kana_char: "ろ", romaji: "ro" },
     { kana_char: "わ", romaji: "wa" }, { kana_char: "", romaji: "" }, { kana_char: "を", romaji: "wo" }, { kana_char: "", romaji: "" }, { kana_char: "ん", romaji: "n" }
 ];
+// ひらがな濁音・半濁音の配列
 const DAKUON = [
     { kana_char: "が", romaji: "ga" }, { kana_char: "ぎ", romaji: "gi" }, { kana_char: "ぐ", romaji: "gu" }, { kana_char: "げ", romaji: "ge" }, { kana_char: "ご", romaji: "go" },
     { kana_char: "ざ", romaji: "za" }, { kana_char: "じ", romaji: "ji" }, { kana_char: "ず", romaji: "zu" }, { kana_char: "ぜ", romaji: "ze" }, { kana_char: "ぞ", romaji: "zo" },
@@ -17,6 +19,7 @@ const DAKUON = [
     { kana_char: "ば", romaji: "ba" }, { kana_char: "び", romaji: "bi" }, { kana_char: "ぶ", romaji: "bu" }, { kana_char: "べ", romaji: "be" }, { kana_char: "ぼ", romaji: "bo" },
     { kana_char: "ぱ", romaji: "pa" }, { kana_char: "ぴ", romaji: "pi" }, { kana_char: "ぷ", romaji: "pu" }, { kana_char: "ぺ", romaji: "pe" }, { kana_char: "ぽ", romaji: "po" }
 ];
+// ひらがな拗音の配列
 const YOUON = [
     { kana_char: "きゃ", romaji: "kya" }, { kana_char: "", romaji: "" }, { kana_char: "きゅ", romaji: "kyu" }, { kana_char: "", romaji: "" }, { kana_char: "きょ", romaji: "kyo" },
     { kana_char: "しゃ", romaji: "sha" }, { kana_char: "", romaji: "" }, { kana_char: "しゅ", romaji: "shu" }, { kana_char: "", romaji: "" }, { kana_char: "しょ", romaji: "sho" },
@@ -30,6 +33,37 @@ const YOUON = [
     { kana_char: "びゃ", romaji: "bya" }, { kana_char: "", romaji: "" }, { kana_char: "びゅ", romaji: "byu" }, { kana_char: "", romaji: "" }, { kana_char: "びょ", romaji: "byo" },
     { kana_char: "ぴゃ", romaji: "pya" }, { kana_char: "", romaji: "" }, { kana_char: "ぴゅ", romaji: "pyu" }, { kana_char: "", romaji: "" }, { kana_char: "ぴょ", romaji: "pyo" },
 ];
+// ひらがな清音をカタカナに変換する関数
+const KATAKANA_SEION = SEION.map(q => ({
+    kana_char: q.kana_char ? toKatakana(q.kana_char) : "",
+    romaji: q.romaji
+}));
+// ひらがな濁音・半濁音をカタカナに変換する関数
+const KATAKANA_DAKUON = DAKUON.map(q => ({
+    kana_char: q.kana_char ? toKatakana(q.kana_char) : "",
+    romaji: q.romaji
+}));
+// ひらがな拗音をカタカナに変換する関数
+const KATAKANA_YOUON = YOUON.map(q => ({
+    kana_char: q.kana_char ? toKatakana(q.kana_char) : "",
+    romaji: q.romaji
+}));
+// カタカナの外来語由来の拡張音（ファ行、ティ・ディ、チェ・ジェ・シェなど）
+const KATAKANA_EXTRA = [
+    { kana_char: "ファ", romaji: "fa" }, { kana_char: "フィ", romaji: "fi" }, { kana_char: "", romaji: "" }, { kana_char: "フェ", romaji: "fe" }, { kana_char: "フォ", romaji: "fo" },
+    { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" }, { kana_char: "シェ", romaji: "she" }, { kana_char: "", romaji: "" },
+    { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" }, { kana_char: "ジェ", romaji: "je" }, { kana_char: "", romaji: "" },
+    { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" }, { kana_char: "チェ", romaji: "che" }, { kana_char: "", romaji: "" },
+    { kana_char: "", romaji: "" }, { kana_char: "ティ", romaji: "thi" }, { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" },
+    { kana_char: "", romaji: "" }, { kana_char: "ディ", romaji: "dhi" }, { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" },
+    { kana_char: "", romaji: "" }, { kana_char: "", romaji: "" }, { kana_char: "トゥ", romaji: "twu" }, { kana_char: "", romaji: "" },  { kana_char: "", romaji: "" },
+];
+// ひらがな→カタカナ変換関数
+function toKatakana(str) {
+    return str.replace(/[\u3041-\u3096]/g, ch =>
+        String.fromCharCode(ch.charCodeAt(0) + 0x60)
+    );
+}
 
 // =====================
 // ゲームタイプ判定
@@ -48,7 +82,16 @@ if (gameType === "seion") {
     QUESTIONS = DAKUON;
 } else if (gameType === "youon") {
     QUESTIONS = YOUON;
+} else if (gameType === "katakana-seion") {
+    QUESTIONS = KATAKANA_SEION;
+} else if (gameType === "katakana-dakuon") {
+    QUESTIONS = KATAKANA_DAKUON;
+} else if (gameType === "katakana-youon") {
+    QUESTIONS = KATAKANA_YOUON;
+} else if (gameType === "katakana-extra") {
+    QUESTIONS = KATAKANA_EXTRA;
 }
+
 
 // =====================
 let remaining = {};
@@ -134,8 +177,7 @@ function handleClick(e) {
         card.style.visibility = "hidden";
         delete remaining[current];
 
-        document.getElementById("remaining-display").textContent =
-    "あと：" + Object.keys(remaining).length;
+        document.getElementById("remaining-display").textContent = "のこり：" + Object.keys(remaining).length;
 
         if (Object.keys(remaining).length === 0) {
             endGame();
@@ -175,10 +217,17 @@ function endGame() {
     document.getElementById("result-modal").classList.remove("hidden");
 }
 
+// モーダル表示用のラベル
 function getGameLabel(type) {
-    if (type === "seion") return "せいおん";
-    if (type === "dakuon") return "だくおん・はんだくおん";
-    if (type === "youon") return "ようおん";
+    if (type === "seion") return "ひらがな（せいおん）";
+    if (type === "dakuon") return "ひらがな（だくおん）";
+    if (type === "youon") return "ひらがな（ようおん）";
+
+    if (type === "katakana-seion") return "カタカナ（せいおん）";
+    if (type === "katakana-dakuon") return "カタカナ（だくおん）";
+    if (type === "katakana-youon") return "カタカナ（ようおん）";
+    if (type === "katakana-extra") return "カタカナ（外来語）";
+
     return type;
 }
 
