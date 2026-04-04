@@ -19,17 +19,19 @@ body {
    問題（主役）
 ===================== */
 #romaji-display {
-    font-size: 10vw;   /* ← 大きく */
+    font-size: min(10vw, 40px);
     font-weight: bold;
     color: #d32f2f;
     margin: 10px 0;
 }
 
 /* =====================
-   タイマー
+   タイマー、残り時間、ミス回数の共通スタイル
 ===================== */
-#timer-display {
-    font-size: 5vw;
+#timer-display,
+#remaining-display,
+#miss-display {
+    font-size: min(5vw, 24px);
     font-weight: bold;
 }
 
@@ -37,9 +39,7 @@ body {
    間違えた回数
 ===================== */
 #miss-display {
-    font-size: 5vw;
     color: #d32f2f;
-    font-weight: bold;
 }
 
 /* =====================
@@ -53,7 +53,7 @@ body {
 }
 
 #sound-btn {
-    font-size: 6vw;
+    font-size: min(6vw, 30px);
     background: none;
     border: none;
     cursor: pointer;
@@ -78,8 +78,7 @@ body {
     flex: 1;
     max-width: 300px;
     padding: 12px;
-    font-size: 5vw;
-    /* font-size: min(5vw, 18px); */
+    font-size: min(5vw, 20px);
 }
 
 /* 個別指定は最小限に */
@@ -111,7 +110,7 @@ body {
 .card-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-rows: repeat(11, 1fr);
     width: 95vw;
     height: 75vh;
     margin: 10px auto;
@@ -192,12 +191,12 @@ body {
 
 /* モーダル文字サイズUP */
 .modal-content h2 {
-    font-size: 6vw;
+    font-size: min(6vw, 32px);
     color: #4A2800;
 }
 
 .modal-content p {
-    font-size: 5vw;
+    font-size: min(5vw, 20px);
     color: #4A2800;
 }
 
@@ -205,7 +204,7 @@ body {
 .modal-content button {
     margin: 10px;
     padding: 12px 20px;
-    font-size: 4.5vw;
+    font-size: min(4.5vw, 18px);
     background: #B67A20;
     color: white;
     border: none;
@@ -224,7 +223,7 @@ body {
 }
 
 .menu h1 {
-    font-size: 8vw;
+    font-size: min(8vw, 40px);
     margin-bottom: 5px;
 }
 
@@ -233,28 +232,14 @@ body {
     max-width: 400px;
     margin: 5px;
     padding: 5px;
-
-    font-size: 5vw;
+    font-size: min(5vw, 20px);
     border-radius: 12px;
-    /* font-size: 6vw;
-    padding: 15px 30px;
-    border-radius: 10px;
-    border: none;
-    margin-bottom: 5px;
-    background: #d32f2f;
-    color: white;
-    cursor: pointer; */
 }
 
 /* サブテキスト */
 .menu small {
-    font-size: 3.5vw;
+    font-size: min(3.5vw, 14px);
     color: #555;
-}
-
-#remaining-display {
-    font-size: 5vw;
-    font-weight: bold;
 }
 
 /* =====================
@@ -266,4 +251,18 @@ body {
     50% { transform: translateX(5px); }
     75% { transform: translateX(-5px); }
     100% { transform: translateX(0); }
+}
+
+/* =====================
+   メディアクエリ（画面幅768px以上でレイアウト調整）
+===================== */
+@media (min-width: 768px) {
+    .card-container {
+        width: 80vw;
+        height: 65vh;
+    }
+
+    .menu {
+        gap: 10px;
+    }
 }
