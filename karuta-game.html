@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>かるたゲーム</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <h1>かるたゲーム（あ）</h1>
+  <h2>プロトタイプ</h2>
+
+  <div class="question-area">
+    <p id="romaji-display">loading...</p>
+    <button id="sound-btn" onclick="playAudio()">🔊</button>
+  </div>
+
+  <div id="cards"></div>
+
+  <div class="button-area">
+    <button onclick="goBack()">もどる</button>
+  </div>
+
+  <script type="module" src="js/karuta-game.js"></script>
+</body>
+</html>

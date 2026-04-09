@@ -277,7 +277,7 @@ function restartGame() {
 }
 
 function goMenu() {
-    location.href = "index.html";
+    location.href = "kana-index.html";
 }
 
 document.getElementById("card-container").classList.add("disabled");

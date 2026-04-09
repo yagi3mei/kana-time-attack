@@ -1,56 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>かなゲーム</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>かな・かるたゲーム</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="menu">
-        <h1>かなゲーム</h1>
 
-        <button onclick="goGame('seion')">
-            せいおん<br>
-            <small>あ・い・う…わ・を・ん</small>
-        </button>
+  <h1>ゲーム選択</h1>
 
-        <button onclick="goGame('dakuon')">
-            だくおん・はんだくおん<br>
-            <small>が・ぎ・ぐ…ぱ・ぴ・ぷ…</small>
-        </button>
-
-        <button onclick="goGame('youon')">
-            ようおん<br>
-            <small>きゃ・きゅ・きょ…</small>
-        </button>
-
-        <button onclick="goGame('katakana-seion')">
-            カタカナ（せいおん）<br>
-            <small>ア・イ・ウ…ワ・ヲ・ン</small>
-        </button>
-
-        <button onclick="goGame('katakana-dakuon')">
-            カタカナ（だくおん）<br>
-            <small>ガ・ギ・グ…パ・ピ・プ…</small>
-        </button>
-
-        <button onclick="goGame('katakana-youon')">
-            カタカナ（ようおん）<br>
-            <small>キャ・キュ・キョ…</small>
-        </button>
-
-        <button onclick="goGame('katakana-extra')">
-            カタカナ（外来語）<br>
-            <small>ファ・ティ・ディ…</small>
-        </button>
-    </div>
-
-    <script>
-    function goGame(type) {
-        location.href = "game.html?type=" + type;
-    }
-    </script>
+  <div class="menu">
+    <a href="kana-index.html" class="menu-btn">かなゲーム</a>
+    <a href="karuta-game.html?kana=a" class="menu-btn">かるたゲーム</a>
+  </div>
 
 </body>
 </html>
