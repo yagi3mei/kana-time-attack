@@ -9,6 +9,7 @@ let missCount = 0;
 let startTime = Date.now();
 
 let correctAnswer = null;
+let wrongAnswers = [];
 let usedQuestions = [];
 
 // シャッフル
@@ -99,9 +100,12 @@ function checkAnswer(selected, card) {
     const sound = new Audio("sounds/wrong.mp3");
     sound.volume = 0.6;
     sound.play();
-
+    // ミスカウント
     missCount++;
-
+    // 不正解履歴に追加（重複なし）
+    if (!wrongAnswers.includes(correctAnswer.id)) {
+      wrongAnswers.push(correctAnswer.id);
+    }
     // シェイク
     card.style.animation = "shake 0.3s";
     setTimeout(() => {
@@ -115,10 +119,25 @@ function showResult() {
   const endTime = Date.now();
   const time = ((endTime - startTime) / 1000).toFixed(1);
 
+  const now = new Date();
+  const dateStr = now.toLocaleString();
+
+  // 単語一覧生成
+  let wordList = "";
+
+  data.forEach(item => {
+    const isWrong = wrongAnswers.includes(item.id);
+    const mark = isWrong ? "★" : "　";
+
+    wordList += `${mark} ${item.word}（${item.lesson}課）<br>`;
+  });
+
   const resultText = `
-    クリア！<br>
+    実施日時：${dateStr}<br><br>
     時間：${time}秒<br>
-    ミス：${missCount}回
+    ミス★：${missCount}回<br><br>
+    ＜今回の単語＞<br>
+    ${wordList}
   `;
 
   document.getElementById("result-text").innerHTML = resultText;
@@ -131,6 +150,7 @@ window.restartGame = function () {
   missCount = 0;
   startTime = Date.now();
   usedQuestions = [];
+  wrongAnswers = [];
 
   document.getElementById("result-modal").classList.add("hidden");
 
