@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
+const type = params.get("type") || "hira";
 const kana = params.get("kana") || "a";
-
-const module = await import(`../data/${kana}.js`);
+const module = await import(`../data/${type}_${kana}.js`);
 const data = module.default;
 
 let questionCount = 0;
@@ -56,13 +56,12 @@ function loadQuestion() {
     const img = document.createElement("img");
     img.src = `images/${item.img}`;
 
-    const text = document.createElement("p");
-    text.textContent = item.word;
-    text.style.color = "red";
-    text.style.fontWeight = "bold";
+    const label = document.createElement("div");
+    label.className = "card-label";
+    label.textContent = item.word;
 
     card.appendChild(img);
-    card.appendChild(text);
+    card.appendChild(label);
 
     card.onclick = () => checkAnswer(item, card);
 
@@ -159,7 +158,7 @@ window.restartGame = function () {
 
 // 戻る
 window.goBack = function () {
-  location.href = "index.html";
+  history.back();
 };
 
 // 初期実行
