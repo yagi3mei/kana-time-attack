@@ -32,7 +32,7 @@ export default [
     kana: "イタイ",
     romaji: "i ta i",
     sentence: "頭が 痛いです",
-    img: "head.png",
+    img: "pain.png",
     lesson: 17
   },
   {

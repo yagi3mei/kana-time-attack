@@ -22,7 +22,8 @@ export default [
     word: "あし",
     kana: "アシ",
     romaji: "a shi",
-    sentence: "足が 痛いです",
+    sentence: "足が 痛いです",  // 文章はアクセントが良い
+    // sentence: "足",  // これはアクセントが良くない
     img: "foot.png",
     lesson: 16
   },

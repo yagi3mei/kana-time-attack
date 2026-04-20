@@ -70,7 +70,9 @@ function loadQuestion() {
   });
 
   // 自動音声
-  playAudio();
+  setTimeout(() => {
+    playAudio();
+  }, 500);  // ← 0.6秒待つことで正解/不正解音声との重なりを防ぐ
 }
 
 // 音声
@@ -85,8 +87,9 @@ window.playAudio = function () {
 function checkAnswer(selected, card) {
   if (selected.id === correctAnswer.id) {
     // 正解
+    speechSynthesis.cancel(); // 音声読み上げ停止
     const sound = new Audio("sounds/correct.mp3");
-    sound.volume = 0.6;  // 0.0〜1.0
+    sound.volume = 0.4;  // 0.0〜1.0
     sound.play();
 
     questionCount++;
@@ -98,7 +101,7 @@ function checkAnswer(selected, card) {
   } else {
     // 不正解
     const sound = new Audio("sounds/wrong.mp3");
-    sound.volume = 0.6;
+    sound.volume = 0.4;
     sound.play();
     // ミスカウント
     missCount++;
