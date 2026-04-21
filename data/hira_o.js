@@ -4,7 +4,7 @@ export default [
     word: "おかね",
     kana: "オカネ",
     romaji: "o ka ne",
-    sentence: "お金が あります",
+    sentence: "おかねが あります",
     img: "okane_money.png",
     lesson: 7
   },
@@ -13,7 +13,7 @@ export default [
     word: "おきます",
     kana: "オキマス",
     romaji: "o ki ma su",
-    sentence: "7時に 起きます",
+    sentence: "しちじに おきます",
     img: "okimasu_wake.png",
     lesson: 4
   },
@@ -22,7 +22,7 @@ export default [
     word: "おします",
     kana: "オシマス",
     romaji: "o shi ma su",
-    sentence: "ボタンを 押します",
+    sentence: "ボタンを おします",
     img: "oshimasu_push.png",
     lesson: 16
   },
@@ -49,7 +49,7 @@ export default [
     word: "おちゃ",
     kana: "オチャ",
     romaji: "o cha",
-    sentence: "お茶を 飲みます",
+    sentence: "おちゃを のみます",
     img: "ocha_tea.png",
     lesson: 6
   }

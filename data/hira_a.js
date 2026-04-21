@@ -4,7 +4,7 @@ export default [
     word: "あかい",
     kana: "アカイ",
     romaji: "a ka i",
-    sentence: "赤い りんごです",
+    sentence: "あかい りんごです",
     img: "akai_red.png",
     lesson: 8
   },
@@ -13,7 +13,7 @@ export default [
     word: "あめ",
     kana: "アメ",
     romaji: "a me",
-    sentence: "雨が ふっています",
+    sentence: "あめが ふっています",
     img: "ame_rain.png",
     lesson: 12
   },
@@ -22,7 +22,7 @@ export default [
     word: "あおい",
     kana: "アオイ",
     romaji: "a o i",
-    sentence: "青い 空です",
+    sentence: "あおい そらです",
     img: "aoi_blue.png",
     lesson: 8
   },
@@ -31,7 +31,7 @@ export default [
     word: "あさ",
     kana: "アサ",
     romaji: "a sa",
-    sentence: "朝 散歩します",
+    sentence: "あさ さんぽします",
     img: "asa_morning.png",
     lesson: 4
   },
@@ -40,8 +40,8 @@ export default [
     word: "あし",
     kana: "アシ",
     romaji: "a shi",
-    sentence: "足が 痛いです",  // 文章はアクセントが良い
-    // sentence: "足",  // これはアクセントが良くない
+    sentence: "あしが いたいです",  // 文章はアクセントが良い
+    // sentence: "あし",  // これはアクセントが良くない
     img: "ashi_leg.png",
     lesson: 16
   },
@@ -50,7 +50,7 @@ export default [
     word: "あたま",
     kana: "アタマ",
     romaji: "a ta ma",
-    sentence: "頭が 痛いです",
+    sentence: "あたまが いたいです",
     img: "atama_head.png",
     lesson: 16
   }

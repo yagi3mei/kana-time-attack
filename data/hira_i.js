@@ -4,7 +4,7 @@ export default [
     word: "いいます",
     kana: "イイマス",
     romaji: "i i ma su",
-    sentence: "名前を 言います",
+    sentence: "なまえを いいます",
     img: "ii_say.png",
     lesson: 21
   },
@@ -13,7 +13,7 @@ export default [
     word: "いぬ",
     kana: "イヌ",
     romaji: "i nu",
-    sentence: "犬が います",
+    sentence: "いぬが います",
     img: "inu_dog.png",
     lesson: 10
   },
@@ -22,7 +22,7 @@ export default [
     word: "いれます",
     kana: "イレマス",
     romaji: "i re ma su",
-    sentence: "かばんに 入れます",
+    sentence: "かばんに いれます",
     img: "ireru_put.png",
     lesson: 16
   },
@@ -31,7 +31,7 @@ export default [
     word: "いしゃ",
     kana: "イシャ",
     romaji: "i sha",
-    sentence: "父は いしゃです",
+    sentence: "ちちは いしゃです",
     img: "isha_doctor.png",
     lesson: 1
   },
@@ -40,7 +40,7 @@ export default [
     word: "いす",
     kana: "イス",
     romaji: "i su",
-    sentence: "椅子に 座ります",
+    sentence: "いすに すわります",
     img: "isu_chair.png",
     lesson: 2
   },
@@ -49,7 +49,7 @@ export default [
     word: "いたい",
     kana: "イタイ",
     romaji: "i ta i",
-    sentence: "頭が 痛いです",
+    sentence: "あたまが いたいです",
     img: "itai_pain.png",
     lesson: 17
   }

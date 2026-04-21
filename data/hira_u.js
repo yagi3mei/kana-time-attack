@@ -4,7 +4,7 @@ export default [
     word: "うえ",
     kana: "ウエ",
     romaji: "u e",
-    sentence: "上に あります",
+    sentence: "うえに あります",
     img: "ue_up.png",
     lesson: 10
   },
@@ -13,7 +13,7 @@ export default [
     word: "うしろ",
     kana: "ウシロ",
     romaji: "u shi ro",
-    sentence: "後ろに あります",
+    sentence: "うしろに あります",
     img: "ushiro_back.png",
     lesson: 10
   },
@@ -22,7 +22,7 @@ export default [
     word: "うた",
     kana: "ウタ",
     romaji: "u ta",
-    sentence: "歌を 聞きます",
+    sentence: "うたを ききます",
     img: "uta_song.png",
     lesson: 9
   },
@@ -31,7 +31,7 @@ export default [
     word: "うち",
     kana: "ウチ",
     romaji: "u chi",
-    sentence: "うちに 帰ります",
+    sentence: "うちに かえります",
     img: "uchi_home.png",
     lesson: 3
   },
@@ -40,7 +40,7 @@ export default [
     word: "うま",
     kana: "ウマ",
     romaji: "u ma",
-    sentence: "馬が います",
+    sentence: "うまが います",
     img: "uma_horse.png",
     lesson: 18
   },
