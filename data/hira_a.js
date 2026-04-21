@@ -1,21 +1,39 @@
 export default [
   {
-    id: "aoi_blue",
-    word: "あおい",
-    kana: "アオイ",
-    romaji: "a o i",
-    sentence: "青い 空です",
-    img: "blue.png",
-    lesson: 8
-  },
-  {
     id: "akai_red",
     word: "あかい",
     kana: "アカイ",
     romaji: "a ka i",
     sentence: "赤い りんごです",
-    img: "red.png",
+    img: "akai_red.png",
     lesson: 8
+  },
+  {
+    id: "ame_rain",
+    word: "あめ",
+    kana: "アメ",
+    romaji: "a me",
+    sentence: "雨が ふっています",
+    img: "ame_rain.png",
+    lesson: 12
+  },
+  {
+    id: "aoi_blue",
+    word: "あおい",
+    kana: "アオイ",
+    romaji: "a o i",
+    sentence: "青い 空です",
+    img: "aoi_blue.png",
+    lesson: 8
+  },
+  {
+    id: "asa_morning",
+    word: "あさ",
+    kana: "アサ",
+    romaji: "a sa",
+    sentence: "朝 散歩します",
+    img: "asa_morning.png",
+    lesson: 4
   },
   {
     id: "ashi_leg",
@@ -24,7 +42,7 @@ export default [
     romaji: "a shi",
     sentence: "足が 痛いです",  // 文章はアクセントが良い
     // sentence: "足",  // これはアクセントが良くない
-    img: "foot.png",
+    img: "ashi_leg.png",
     lesson: 16
   },
   {
@@ -33,26 +51,8 @@ export default [
     kana: "アタマ",
     romaji: "a ta ma",
     sentence: "頭が 痛いです",
-    img: "head.png",
+    img: "atama_head.png",
     lesson: 16
-  },
-  {
-    id: "ame_rain",
-    word: "あめ",
-    kana: "アメ",
-    romaji: "a me",
-    sentence: "雨が ふっています",
-    img: "rain.png",
-    lesson: 12
-  },
-  {
-    id: "asa_morning",
-    word: "あさ",
-    kana: "アサ",
-    romaji: "a sa",
-    sentence: "朝 散歩します",
-    img: "morning.png",
-    lesson: 4
   }
 ];
 
