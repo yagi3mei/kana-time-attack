@@ -267,17 +267,24 @@ body {
 .kana-tile {
     background: white;
     font-size: min(6vw, 28px);
-    white-space: normal;       /* 改行OK */
-    word-break: break-all;     /* 長い単語も分割 */
+
+    white-space: normal !important;
+    word-break: break-all;
+    overflow: visible !important;
+    text-overflow: clip !important;
+
     text-align: center;
-    
+
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 3px 5px rgba(0,0,0,0.3);
 
-    display: flex;              /* ← 追加 */
-    justify-content: center;   /* 横中央 */
-    align-items: center;       /* 縦中央 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5px;           /* ← これ地味に効く */
+    line-height: 1.2;       /* ← 改行時の見やすさ */
 }
 
 .kana-tile.disabled {
