@@ -8,12 +8,20 @@
 </head>
 <body>
 
-  <!-- <h1>かるたゲーム</h1> -->
+  <div class="header">
+      <div id="timer-display">0.00</div>
+      <div id="remaining-display">0</div>
+      <div id="miss-display">0</div>
+  </div>
 
   <div class="question-area">
+      <div id="romaji-display">もんだい</div>
+      <button id="sound-btn">🔊</button>
+  </div>
+  <!-- <div class="question-area">
     <p id="romaji-display">loading...</p>
     <button id="sound-btn" onclick="playAudio()">🔊</button>
-  </div>
+  </div> -->
 
   <div id="cards"></div>
 

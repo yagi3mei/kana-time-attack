@@ -3,23 +3,40 @@ const type = params.get("type") || "hira";
 const kana = params.get("kana") || "a";
 const module = await import(`../data/${type}_${kana}.js`);
 const data = module.default;
+const timerDisplay = document.getElementById("timer-display");
+const missDisplay = document.getElementById("miss-display");
+
+// 表示用
 const kanaLabelMap = {
   a: "あ", i: "い", u: "う", e: "え", o: "お",
   ka: "か", ki: "き", ku: "く", ke: "け", ko: "こ",
   sa: "さ", shi: "し", su: "す", se: "せ", so: "そ"
-  // 必要に応じて追加
 };
 
 const kanaDisplay = kanaLabelMap[kana] || kana;
 const typeDisplay = type === "hira" ? "ひらがな" : "カタカナ";
 
+// 🔥 DOMキャッシュ（重要）
+const romajiDisplay = document.getElementById("romaji-display");
+const cardsDiv = document.getElementById("cards");
+const remainingDisplay = document.getElementById("remaining-display");
+const resultTextEl = document.getElementById("result-text");
+const resultModal = document.getElementById("result-modal");
+
+// 状態
 let questionCount = 0;
 let missCount = 0;
-let startTime = Date.now();
-
+let startTime = performance.now();
+let timerInterval;
 let correctAnswer = null;
 let wrongAnswers = [];
 let usedQuestions = [];
+
+// =====================
+// 初期描画
+// =====================
+remainingDisplay.textContent = "のこり：" + data.length;
+missDisplay.textContent = "ミス：0";
 
 // シャッフル
 function shuffle(array) {
@@ -28,33 +45,36 @@ function shuffle(array) {
 
 // 問題生成
 function loadQuestion() {
-  // 5問終了チェック
-  if (questionCount >= data.length) {
-    showResult();
-    return;
-  }
-
-  // 🔥 これを追加
+  // 残り計算
   const remaining = data.filter(item => !usedQuestions.includes(item.id));
 
-  // 念のため
+  // 🔥 表示更新
+  if (questionCount === 0) {
+    startTime = performance.now();
+
+    timerInterval = setInterval(() => {
+      const t = (performance.now() - startTime) / 1000;
+      document.getElementById("timer-display").textContent = t.toFixed(2);
+    }, 50);
+  }
+
+  remainingDisplay.textContent = "のこり：" + remaining.length;
+
+  // 終了チェック
   if (remaining.length === 0) {
     showResult();
     return;
   }
-  
-  // 正解選択（未出題から）
+
+  // 正解選択
   correctAnswer = remaining[Math.floor(Math.random() * remaining.length)];
-  
-  // 履歴に追加
   usedQuestions.push(correctAnswer.id);
 
-  document.getElementById("romaji-display").textContent = correctAnswer.romaji;
+  // 問題表示
+  romajiDisplay.textContent = correctAnswer.romaji;
 
-  // カードは全データから5枚（ここ重要）
+  // カード生成
   const selected = shuffle([...data]);
-
-  const cardsDiv = document.getElementById("cards");
   cardsDiv.innerHTML = "";
 
   selected.forEach(item => {
@@ -76,10 +96,10 @@ function loadQuestion() {
     cardsDiv.appendChild(card);
   });
 
-  // 自動音声
+  // 音声
   setTimeout(() => {
     playAudio();
-  }, 500);  // ← 0.6秒待つことで正解/不正解音声との重なりを防ぐ
+  }, 500);
 }
 
 // 音声
@@ -93,10 +113,10 @@ window.playAudio = function () {
 // 判定
 function checkAnswer(selected, card) {
   if (selected.id === correctAnswer.id) {
-    // 正解
-    speechSynthesis.cancel(); // 音声読み上げ停止
+    speechSynthesis.cancel();
+
     const sound = new Audio("sounds/correct.mp3");
-    sound.volume = 0.4;  // 0.0〜1.0
+    sound.volume = 0.4;
     sound.play();
 
     questionCount++;
@@ -106,17 +126,17 @@ function checkAnswer(selected, card) {
     }, 500);
 
   } else {
-    // 不正解
     const sound = new Audio("sounds/wrong.mp3");
     sound.volume = 0.4;
     sound.play();
-    // ミスカウント
+
     missCount++;
-    // 不正解履歴に追加（重複なし）
+    missDisplay.textContent = "ミス：" + missCount;
+
     if (!wrongAnswers.includes(correctAnswer.id)) {
       wrongAnswers.push(correctAnswer.id);
     }
-    // シェイク
+
     card.style.animation = "shake 0.3s";
     setTimeout(() => {
       card.style.animation = "";
@@ -126,19 +146,19 @@ function checkAnswer(selected, card) {
 
 // 結果表示
 function showResult() {
-  const endTime = Date.now();
-  const time = ((endTime - startTime) / 1000).toFixed(1);
+  clearInterval(timerInterval);
+
+  const endTime = performance.now();
+  const time = ((endTime - startTime) / 1000).toFixed(2);
 
   const now = new Date();
   const dateStr = now.toLocaleString();
 
-  // 単語一覧生成
   let wordList = "";
 
   data.forEach(item => {
     const isWrong = wrongAnswers.includes(item.id);
     const mark = isWrong ? "★" : "　";
-
     wordList += `${mark} ${item.word}（${item.lesson}課）<br>`;
   });
 
@@ -151,8 +171,8 @@ function showResult() {
     ${wordList}
   `;
 
-  document.getElementById("result-text").innerHTML = resultText;
-  document.getElementById("result-modal").classList.remove("hidden");
+  resultTextEl.innerHTML = resultText;
+  resultModal.classList.remove("hidden");
 }
 
 // 再スタート
@@ -162,8 +182,9 @@ window.restartGame = function () {
   startTime = Date.now();
   usedQuestions = [];
   wrongAnswers = [];
-
-  document.getElementById("result-modal").classList.add("hidden");
+  missDisplay.textContent = "ミス：0";
+  remainingDisplay.textContent = "のこり：" + data.length;
+  resultModal.classList.add("hidden");
 
   loadQuestion();
 };
