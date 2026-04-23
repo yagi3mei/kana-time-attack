@@ -344,10 +344,11 @@ body {
     font-weight: bold;
     color: red;
 
+    
     white-space: nowrap;
     max-width: 90%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: visible;          /* ← はみ出しOK */
+    text-overflow: clip;        /* ← …禁止 */
 }
 
 .correct {
