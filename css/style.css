@@ -259,14 +259,14 @@ body {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     width: 95vw;
-    height: 70vh;
+    height: 85vh;
     margin: 10px auto;
     gap: 6px;
 }
 
 .kana-tile {
     background: white;
-    font-size: min(6vw, 28px);
+    font-size: min(5vw, 22px);
 
     white-space: normal !important;
     word-break: break-all;
