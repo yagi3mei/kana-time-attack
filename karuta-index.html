@@ -7,49 +7,59 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<div class="menu">
-  <h1>かるたゲーム</h1>
-
-  <button onclick="go('hira', 'seion')">
-    ひらがな（せいおん）<br>
-    <small>あ・い・う…</small>
-  </button>
-
-  <button onclick="go('hira', 'dakuon')">
-    ひらがな（だくおん）<br>
-    <small>が・ぎ・ぐ…</small>
-  </button>
-
-  <button onclick="goList('katakana')">
-    カタカナ<br>
-    <small>ア・イ・ウ…</small>
-  </button>
-
-  <!-- もどるボタンも統一 -->
-  <div class="button-area">
-    <button onclick="goBack()">もどる</button>
+  <div class="header">
+    <!-- ロゴ -->
+    <header class="top-header">
+        <a href="index.html">
+            <img src="images/kotorun-logo.png"
+                alt="ことラン"
+                class="app-logo">
+        </a>
+    </header>
   </div>
 
-  <!-- 説明文 -->
-  <small>
-    ことばを れんしゅうします。<br>
-    みんなの日本語 初級Ⅰの ことばです。<br>
-    えが ある ことばだけです。<br>
-    みて、きいて えを えらびます。<br>
-    まちがえると ★が でます。<br>
-  </small>
-</div>
+  <div class="menu">
+    <h1>かるたゲーム</h1>
 
-<script>
-function go(type, group) {
-  location.href = `karuta-list.html?type=${type}&group=${group}`;
-}
+    <button onclick="go('hira', 'seion')">
+      ひらがな（せいおん）<br>
+      <small>あ・い・う…</small>
+    </button>
 
-function goBack(){
-  location.href = "index.html";
-}
-</script>
+    <button onclick="go('hira', 'dakuon')">
+      ひらがな（だくおん）<br>
+      <small>が・ぎ・ぐ…</small>
+    </button>
+
+    <button onclick="goList('katakana')">
+      カタカナ<br>
+      <small>ア・イ・ウ…</small>
+    </button>
+
+    <!-- もどるボタンも統一 -->
+    <div class="button-area">
+      <button onclick="goBack()">もどる</button>
+    </div>
+
+    <!-- 説明文 -->
+    <small>
+      ことばを れんしゅうします。<br>
+      みんなの日本語 初級Ⅰの ことばです。<br>
+      えが ある ことばだけです。<br>
+      みて、きいて えを えらびます。<br>
+      まちがえると ★が でます。<br>
+    </small>
+  </div>
+
+  <script>
+    function go(type, group) {
+      location.href = `karuta-list.html?type=${type}&group=${group}`;
+    }
+
+    function goBack(){
+      location.href = "index.html";
+    }
+  </script>
 
 </body>
 </html>

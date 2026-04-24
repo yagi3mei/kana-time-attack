@@ -1,18 +1,64 @@
+/* =========================
+   TOP画面
+========================= */
 body {
+    margin:0;
     font-family: sans-serif;
     text-align: center;
-    background: #f5f5f5;
+    background:#fffdf8;
+}
+
+/* ロゴ */
+.top-header{
+    padding:12px 15px;
+    text-align:left;
+}
+
+.app-logo{
+    width:70px;
+    height:auto;
+    transition:transform .15s;
+}
+
+.app-logo:active{
+    transform:scale(.95);
+}
+
+.top-menu{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+/* メイン */
+.hero-area{
+    position:relative;
+    max-width:420px;
+    margin:10px auto 0;
+    padding:10px;
+}
+
+/* ランナー絵 */
+.runner-visual{
+    width:100%;
+    max-width:360px;
+    display:block;
+    margin:auto;
 }
 
 /* =====================
    ヘッダー（タイマーだけ）
 ===================== */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px;
-    padding: 0 10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    padding:8px 10px;
 }
 
 /* =====================
@@ -218,7 +264,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 70vh;
 }
 
 .menu h1 {
@@ -288,7 +334,29 @@ body {
     pointer-events: none;
 }
 
-.menu-btn {
+.menu-btn{
+    display:inline-block;
+
+    background:white;
+    text-decoration:none;
+    color:#333;
+
+    font-size:1.2rem;
+    font-weight:bold;
+
+    padding:12px 26px;
+
+    border-radius:40px;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+    transition:.2s;
+}
+
+.menu-btn:hover{
+    transform:scale(1.05);
+}
+
+/* .menu-btn {
     display: block;
     margin: 20px auto;
     padding: 20px;
@@ -297,7 +365,7 @@ body {
     color: white;
     text-decoration: none;
     border-radius: 10px;
-}
+} */
 
 #cards {
     display: grid;
@@ -354,6 +422,15 @@ body {
    メディアクエリ（画面幅768px以上でレイアウト調整）
 ===================== */
 @media (min-width: 768px) {
+    .app-logo{
+        width:95px;
+    }
+
+    .menu-btn{
+        font-size:1.5rem;
+        padding:14px 34px;
+    }
+
     #romaji-display {
         font-size: 48px;
     }
