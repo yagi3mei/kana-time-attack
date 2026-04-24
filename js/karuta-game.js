@@ -110,6 +110,8 @@ window.playAudio = function () {
   speechSynthesis.speak(utter);
 };
 
+document.getElementById("sound-btn").addEventListener("click", playAudio);
+
 // 判定
 function checkAnswer(selected, card) {
   if (selected.id === correctAnswer.id) {
