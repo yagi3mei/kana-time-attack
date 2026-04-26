@@ -40,7 +40,7 @@ export default [
     word: "すいようび",
     kana: "スイヨウビ",
     romaji: "su i yo u bi",
-    sentence: "きょうは すいようびです",
+    sentence: "きょうわ すいようびです",
     img: "suiyoubi_wednesday.png",
     lesson: 4
   },
@@ -49,7 +49,7 @@ export default [
     word: "すずしい",
     kana: "スズシイ",
     romaji: "su zu shi i",
-    sentence: "きょうは すずしいです",
+    sentence: "きょうわ すずしいです",
     img: "suzushii_cool.png",
     lesson: 12
   }

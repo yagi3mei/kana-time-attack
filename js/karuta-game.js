@@ -1,29 +1,50 @@
 const params = new URLSearchParams(window.location.search);
 const type = params.get("type") || "hira";
 const kana = params.get("kana") || "a";
+
 const module = await import(`../data/${type}_${kana}.js`);
 const data = module.default;
+
 const timerDisplay = document.getElementById("timer-display");
 const missDisplay = document.getElementById("miss-display");
 
-// 表示用
+
+/* =========================
+★追加1 画像フォルダ定数
+========================= */
+
+// 今は清音のみ
+const IMAGE_DIR_MAP = {
+  hira: "images/hiragana-seion/",
+  kata: "images/katakana-seion/"
+};
+
+// typeに応じて自動切替
+const IMAGE_DIR = IMAGE_DIR_MAP[type] || "images/hiragana-seion/";
+
+
+
+/* 表示用 */
 const kanaLabelMap = {
   a: "あ", i: "い", u: "う", e: "え", o: "お",
   ka: "か", ki: "き", ku: "く", ke: "け", ko: "こ",
-  sa: "さ", shi: "し", su: "す", se: "せ", so: "そ"
+  sa: "さ", shi: "し", su: "す", se: "せ", so: "そ",
+  ta: "た", chi: "ち", tsu: "つ", te: "て", to: "と",
 };
 
 const kanaDisplay = kanaLabelMap[kana] || kana;
 const typeDisplay = type === "hira" ? "ひらがな" : "カタカナ";
 
-// 🔥 DOMキャッシュ（重要）
+
+/* DOMキャッシュ */
 const romajiDisplay = document.getElementById("romaji-display");
 const cardsDiv = document.getElementById("cards");
 const remainingDisplay = document.getElementById("remaining-display");
 const resultTextEl = document.getElementById("result-text");
 const resultModal = document.getElementById("result-modal");
 
-// 状態
+
+/* 状態 */
 let questionCount = 0;
 let missCount = 0;
 let startTime = performance.now();
@@ -32,57 +53,79 @@ let correctAnswer = null;
 let wrongAnswers = [];
 let usedQuestions = [];
 
-// =====================
-// 初期描画
-// =====================
+
+/* 初期描画 */
 remainingDisplay.textContent = "のこり：" + data.length;
 missDisplay.textContent = "ミス：0";
 
-// シャッフル
+
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-// 問題生成
-function loadQuestion() {
-  // 残り計算
-  const remaining = data.filter(item => !usedQuestions.includes(item.id));
 
-  // 🔥 表示更新
+/* =====================
+問題生成
+===================== */
+
+function loadQuestion() {
+
+  const remaining = data.filter(
+    item => !usedQuestions.includes(item.id)
+  );
+
+
   if (questionCount === 0) {
+
     startTime = performance.now();
 
     timerInterval = setInterval(() => {
+
       const t = (performance.now() - startTime) / 1000;
-      document.getElementById("timer-display").textContent = t.toFixed(2);
+
+      timerDisplay.textContent = t.toFixed(2);
+
     }, 50);
   }
 
   remainingDisplay.textContent = "のこり：" + remaining.length;
 
-  // 終了チェック
+
   if (remaining.length === 0) {
     showResult();
     return;
   }
 
-  // 正解選択
-  correctAnswer = remaining[Math.floor(Math.random() * remaining.length)];
+
+  correctAnswer =
+    remaining[Math.floor(Math.random() * remaining.length)];
+
   usedQuestions.push(correctAnswer.id);
 
-  // 問題表示
+
   romajiDisplay.textContent = correctAnswer.romaji;
 
-  // カード生成
+
+  /* カード生成 */
   const selected = shuffle([...data]);
+
   cardsDiv.innerHTML = "";
 
   selected.forEach(item => {
+
     const card = document.createElement("div");
     card.className = "card";
 
     const img = document.createElement("img");
+
+
+    /* =========================
+    ★変更2 画像パスを定数化
+    旧:
     img.src = `images/${item.img}`;
+    ========================= */
+    img.src = IMAGE_DIR + item.img;
+
 
     const label = document.createElement("div");
     label.className = "card-label";
@@ -94,27 +137,42 @@ function loadQuestion() {
     card.onclick = () => checkAnswer(item, card);
 
     cardsDiv.appendChild(card);
+
   });
 
-  // 音声
+
   setTimeout(() => {
     playAudio();
   }, 500);
+
 }
 
-// 音声
+
+
+/* 音声 */
 window.playAudio = function () {
-  const utter = new SpeechSynthesisUtterance(correctAnswer.sentence);
+
+  const utter =
+    new SpeechSynthesisUtterance(correctAnswer.sentence);
+
   utter.lang = "ja-JP";
+
   speechSynthesis.cancel();
   speechSynthesis.speak(utter);
+
 };
 
-document.getElementById("sound-btn").addEventListener("click", playAudio);
+document
+.getElementById("sound-btn")
+.addEventListener("click", playAudio);
 
-// 判定
+
+
+/* 判定 */
 function checkAnswer(selected, card) {
+
   if (selected.id === correctAnswer.id) {
+
     speechSynthesis.cancel();
 
     const sound = new Audio("sounds/correct.mp3");
@@ -128,41 +186,61 @@ function checkAnswer(selected, card) {
     }, 500);
 
   } else {
+
     const sound = new Audio("sounds/wrong.mp3");
     sound.volume = 0.4;
     sound.play();
 
     missCount++;
-    missDisplay.textContent = "ミス：" + missCount;
+
+    missDisplay.textContent =
+      "ミス：" + missCount;
+
 
     if (!wrongAnswers.includes(correctAnswer.id)) {
       wrongAnswers.push(correctAnswer.id);
     }
 
     card.style.animation = "shake 0.3s";
+
     setTimeout(() => {
       card.style.animation = "";
     }, 300);
+
   }
+
 }
 
-// 結果表示
+
+
+/* 結果 */
 function showResult() {
+
   clearInterval(timerInterval);
 
   const endTime = performance.now();
-  const time = ((endTime - startTime) / 1000).toFixed(2);
+
+  const time =
+    ((endTime - startTime) / 1000).toFixed(2);
 
   const now = new Date();
+
   const dateStr = now.toLocaleString();
 
   let wordList = "";
 
   data.forEach(item => {
-    const isWrong = wrongAnswers.includes(item.id);
+
+    const isWrong =
+      wrongAnswers.includes(item.id);
+
     const mark = isWrong ? "★" : "　";
-    wordList += `${mark} ${item.word}（${item.lesson}課）<br>`;
+
+    wordList +=
+      `${mark} ${item.word}（${item.lesson}課）<br>`;
+
   });
+
 
   const resultText = `
     実施日時：${dateStr}<br><br>
@@ -174,27 +252,43 @@ function showResult() {
   `;
 
   resultTextEl.innerHTML = resultText;
+
   resultModal.classList.remove("hidden");
+
 }
 
-// 再スタート
+
+
+/* 再スタート */
 window.restartGame = function () {
+
   questionCount = 0;
   missCount = 0;
+
   startTime = Date.now();
+
   usedQuestions = [];
   wrongAnswers = [];
+
   missDisplay.textContent = "ミス：0";
-  remainingDisplay.textContent = "のこり：" + data.length;
+
+  remainingDisplay.textContent =
+    "のこり：" + data.length;
+
   resultModal.classList.add("hidden");
 
   loadQuestion();
+
 };
 
-// 戻る
+
+
+/* 戻る */
 window.goBack = function () {
   history.back();
 };
 
-// 初期実行
+
+
+/* 初期実行 */
 loadQuestion();

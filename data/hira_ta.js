@@ -49,7 +49,7 @@ export default [
     word: "たんじょうび",
     kana: "タンジョウビ",
     romaji: "ta n jo u bi",
-    sentence: "きょうは たんじょうびです",
+    sentence: "きょうわ たんじょうびです",
     img: "tanjoubi_birthday.png",
     lesson: 5
   }

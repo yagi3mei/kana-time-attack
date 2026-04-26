@@ -21,8 +21,8 @@ export default [
     id: "segatakai_tall",
     word: "せがたかい",
     kana: "セガタカイ",
-    romaji: "se ga ta ka i",
-    sentence: "あのひとは せがたかいです",
+    romaji: "se",
+    sentence: "あのひとわ せがたかいです",
     img: "segatakai_tall.png",
     lesson: 16
   },
@@ -31,7 +31,7 @@ export default [
     word: "せまい",
     kana: "セマイ",
     romaji: "se ma i",
-    sentence: "このみちは せまいです",
+    sentence: "このみちわ せまいです",
     img: "semai_narrow.png",
     lesson: 13
   },
@@ -40,7 +40,7 @@ export default [
     word: "せかい",
     kana: "セカイ",
     romaji: "se ka i",
-    sentence: "せかいは ひろいです",
+    sentence: "せかいわ ひろいです",
     img: "sekai_world.png",
     lesson: 12
   },

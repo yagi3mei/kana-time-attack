@@ -40,7 +40,7 @@ export default [
   //   word: "それ",
   //   kana: "ソレ",
   //   romaji: "so re",
-  //   sentence: "それは わたしの ほんです",
+  //   sentence: "それわ わたしの ほんです",
   //   img: "sore_that.png",
   //   lesson: 2
   // }
