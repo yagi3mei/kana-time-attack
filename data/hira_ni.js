@@ -40,7 +40,7 @@ export default [
         word: "にわ",
         kana: "ニワ",
         romaji: "ni wa",
-        sentence: "にわに はなが あります",
+        sentence: "にわに 花が あります",
         img: "niwa_garden.png",
         lesson: 6
     },

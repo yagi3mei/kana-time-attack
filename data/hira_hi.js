@@ -49,7 +49,7 @@ export default [
     word: "ひろい",
     kana: "ヒロイ",
     romaji: "hi ro i",
-    sentence: "このへやわ ひろいです",
+    sentence: "この部屋わ ひろいです",
     img: "hiroi_room.png",
     lesson: 13
   }

@@ -31,7 +31,7 @@ export default [
         word: "のみもの",
         kana: "ノミモノ",
         romaji: "no mi mo no",
-        sentence: "のみものが あります",
+        sentence: "飲み物が あります",
         img: "nomimono_drink.png",
         lesson: 9
     },

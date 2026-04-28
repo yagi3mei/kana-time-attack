@@ -4,7 +4,7 @@ export default [
         word: "なか",
         kana: "ナカ",
         romaji: "na ka",
-        sentence: "ほんわ なかです",
+        sentence: "本わ なかです",
         img: "naka_inside.png",
         lesson: 10
     },
