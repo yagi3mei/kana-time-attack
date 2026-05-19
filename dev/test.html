@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>storage.js test</title>
+
+    <style>
+
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>storage.js test</h1>
+
+    <button id="save-btn">
+        ダミーデータ保存
+    </button>
+
+    <button id="load-btn">
+        データ表示
+    </button>
+
+    <button id="clear-btn">
+        全削除
+    </button>
+
+    <h2>保存データ</h2>
+
+    <pre id="result-area"></pre>
+
+
+    <script type="module">
+
+        import {
+            loadScores,
+            saveScore,
+            clearScores
+        } from "../js/storage.js";
+
+
+        const resultArea =
+            document.getElementById("result-area");
+
+
+        /* =========================
+           ダミーデータ保存
+        ========================= */
+        document
+            .getElementById("save-btn")
+            .addEventListener("click", () => {
+
+                const result = {
+
+                    time: 20,
+                    miss: 1,
+                    date: "2026-05-19"
+                };
+
+                const updated = saveScore(
+                    "kana",
+                    "hiragana_seion",
+                    result
+                );
+
+                if (updated) {
+
+                    alert("保存しました");
+
+                } else {
+
+                    alert("更新されませんでした");
+                }
+
+                showScores();
+            });
+
+
+        /* =========================
+           データ表示
+        ========================= */
+        document
+            .getElementById("load-btn")
+            .addEventListener("click", () => {
+
+                showScores();
+            });
+
+
+        /* =========================
+           全削除
+        ========================= */
+        document
+            .getElementById("clear-btn")
+            .addEventListener("click", () => {
+
+                clearScores();
+
+                showScores();
+
+                alert("削除しました");
+            });
+
+
+        /* =========================
+           表示処理
+        ========================= */
+        function showScores() {
+
+            const scores = loadScores();
+
+            resultArea.textContent =
+                JSON.stringify(scores, null, 4);
+        }
+
+
+        /* 初回表示 */
+        showScores();
+
+    </script>
+
+</body>
+
+</html>
