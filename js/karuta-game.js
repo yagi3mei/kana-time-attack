@@ -493,7 +493,8 @@ window.restartGame = function () {
 ===================== */
 window.goBack = function () {
 
-  history.back();
+  location.href =
+    `karuta-list.html?type=${type}&group=${group}`;
 
 };
 
