@@ -15,7 +15,7 @@ export default [
     word: "アジア",
     kana: "アジア",
     romaji: "a ji a",
-    sentence: "アジアへ りょこうします",
+    sentence: "アジアえ りょこうします",
     img: "asia_asia.png",
     lesson: 16
   },
