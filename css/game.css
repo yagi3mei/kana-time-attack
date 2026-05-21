@@ -79,7 +79,7 @@
 
 .modal-content {
     background: #FFB728;
-    padding: 16px;
+    padding: 10px 12px;
     border-radius: 12px;
     border: 5px solid #B67A20;
     width: 80vw;
@@ -91,11 +91,14 @@
 
 .modal-content h2 {
     font-size: 5vw;
+    margin-top: 0;
+    margin-bottom: 8px;
     color: #4A2800;
 }
 
 .modal-content p {
     font-size: 4.2vw;
+    margin: 6px 0;
     color: #4A2800;
 }
 
