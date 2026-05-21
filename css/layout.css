@@ -148,11 +148,11 @@
 /* =====================
    結果モーダル：単語一覧
 ===================== */
-#word-list-area {
+.word-list-scroll {
 
     margin-top: 12px;
 
-    max-height: 220px;
+    max-height: 120px;
 
     overflow-y: auto;
 
